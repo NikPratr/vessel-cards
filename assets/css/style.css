@@ -15,6 +15,7 @@ body {
     display: flex;
     justify-content: center;
     background-color: lightgray;
+    font-family: 'arial';
 }
 
 h1 {
@@ -40,6 +41,12 @@ h3 {
     font-weight: bold;
 }
 
+span {
+    cursor: default;
+}
+
+
+
 /*
 ------------------------------
 UI
@@ -47,7 +54,8 @@ UI
 */
 
 #ui {
-    display: flex;
+    display: none;
+    /* display: flex; */
     flex-direction: column;
     align-items: center;
 
@@ -82,7 +90,7 @@ UI
     box-shadow: inset 2px 1px 1px 1px gray;
 }
 
-input {
+#ui input {
     display: inline;
 }
 
@@ -93,7 +101,6 @@ Card
 */
 
 #card {
-    display: none;
     padding: 25px 33px 35px 27px;
 
     max-height: 630px;
@@ -105,12 +112,45 @@ Card
     border-radius: 25px;
 }
 
-.lead {
-    border-bottom: 1px solid;
+.heading1 {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    text-indent: 3px;
+    font-weight: bolder;
+}
+
+.heading2 {
+    margin: 0;
+    text-indent: 3px;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: italic;
 }
 
 .group-end {
     border-bottom: double;
+}
+
+.b-r {
+    border-right: 1px solid;
+}
+
+#card input {
+    margin: 0;
+    
+    background-color: transparent;
+    
+    border: none;
+}
+
+#card input::placeholder {
+    margin-right: 1px;
+    opacity: .5;
+}
+
+#card input:focus {
+    outline: none;
 }
 
 /* Character */
@@ -129,17 +169,6 @@ Card
 
     width: 50%;
     height: 100%;
-    border-right: 1px solid;
-}
-
-#name {
-    height: 12.5%;
-    width: 100%;
-}
-
-#title {
-    height: 12.5%;
-    width: 100%;
 }
 
 .info-row {
@@ -153,8 +182,6 @@ Card
     margin-left: 3px;
     height: 100%;
     width: 30%;
-
-    border-right: 1px solid;
 
     font-size: 14px;
     font-weight: normal;
@@ -185,27 +212,32 @@ Card
     border-style: solid;
 }
 
-.secondaries-row {
-    display: flex;
-    justify-content: space-between;
-
-    width: 100%;
-    height: 12.5%;
-
-    font-size: 14px;
-}
-
-.light {
-    background-color: burlywood;
-}
-
 #sec-stats {
     display: flex;
     flex-direction: column;
 
     width: 50%;
     height: 100%;
-    border-right: 1px solid;
+}
+
+.secondaries-row {
+    display: flex;
+
+    width: 100%;
+    height: 12.5%;
+}
+
+.sec-label {
+
+    font-size: 14px;
+}
+
+.sec-value {
+    font-size: 14px;
+}
+
+.dark {
+    background-color: burlywood;
 }
 
 #secondaries-block-1 {
@@ -312,8 +344,6 @@ Card
 #temp-stats {
     height: 100%;
     width: 70%;
-
-    border-right: 1px solid;
 }
 
 #style {

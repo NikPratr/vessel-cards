@@ -1,22 +1,27 @@
 const name = document.getElementById('name').value;
 
-const str = parseInt(document.getElementById('str').textContent);
-const spd = parseInt(document.getElementById('spd').textContent);
-const agi = parseInt(document.getElementById('agi').textContent);
-const per = parseInt(document.getElementById('per').textContent);
-const clr = parseInt(document.getElementById('clr').textContent);
+const str = parseInt(document.getElementById('str').value);
+const spd = parseInt(document.getElementById('spd').value);
+const agi = parseInt(document.getElementById('agi').value);
+const per = parseInt(document.getElementById('per').value);
+const clr = parseInt(document.getElementById('clr').value);
 const avg = document.getElementById('avg');
 const secondariesRow = document.getElementById('secondaries-block-1');
-const secondariesRadar = document.getElementById('radar');
+const radar = document.getElementById('radar');
 
 const primariesRow = document.getElementById('primaries-row');
 const primariesBar = document.getElementById('bar');
 
 avg.textContent = ((str + spd + agi + per + clr) / 5).toFixed(1);
 
-// primariesRow.style.height = secondariesRow.style.height;
+function updateValue(stat) {
+    var currentValue = stat;
+    stat = currentValue;
 
-new Chart(secondariesRadar, {
+    currentRadar.update();
+}
+
+const currentRadar = new Chart(radar, {
     type: 'radar',
     data: {
         labels: ['STR', 'SPD', 'AGI', 'PER', 'INT'],

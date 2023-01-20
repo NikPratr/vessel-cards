@@ -18,38 +18,63 @@
 
     <main id="card">
         <section id="character">
-            <div id="character-info">
-                <h1 class="lead" id="name">Soldier</h1>
+            <div class="b-r" id="character-info">
+                <input
+                    class="heading1"
+                    id="name"
+                    autocomplete="off"
+                    placeholder="Soldier">
+                </input>
                 <h2 class="group-end" id="title">vigil</h2>
 
-                <div class="info-row">
-                    <span class="info-label">Age</span>
-                    <span class="info-value" id="age">25</span>
+                <div class="info-row b-r">
+                    <span class="info-label b-r">Age</span>
+                    <input
+                    class="info-value"
+                    id="age"
+                    autocomplete="off"
+                    placeholder="Unknown">
+                </input>
                 </div>
 
                 <div class="info-row">
-                    <span class="info-label">Birth Date</span>
-                    <span class="info-value" id="birth-date">9970</span>
+                    <span class="info-label b-r">Birth Date</span>
+                    <span class="info-value" id="birth-date">Unknown</span>
                 </div>
 
                 <div class="info-row">
-                    <span class="info-label">Height</span>
-                    <span class="info-value" id="height">6'0"</span>
+                    <span class="info-label b-r">Height</span>
+                    <input
+                    class="info-value"
+                    id="height"
+                    autocomplete="off"
+                    placeholder="Unknown">
+                </input>
                 </div>
 
                 <div class="info-row group-end">
-                    <span class="info-label">Race</span>
-                    <span class="info-value" id="guild">Akhanian</span>
+                    <span class="info-label b-r">Race</span>
+                    <input
+                    class="info-value"
+                    id="race"
+                    autocomplete="off"
+                    placeholder="Unknown">
+                </input>
                 </div>
 
                 <div class="info-row">
-                    <span class="info-label">Guild</span>
-                    <span class="info-value" id="guild">High Aegis</span>
+                    <span class="info-label b-r">Guild</span>
+                    <input
+                    class="info-value"
+                    id="guild"
+                    autocomplete="off"
+                    placeholder="Unknown">
+                </input>
                 </div>
 
                 <div class="info-row">
-                    <span class="info-label">Alliance</span>
-                    <span class="info-value" id="alliance">Founders' Alliance</span>
+                    <span class="info-label b-r">Alliance</span>
+                    <span class="info-value" id="alliance">Unknown</span>
                 </div>
             </div>
 
@@ -59,37 +84,52 @@
         </section>
 
         <section id="secondaries">
-            <div id="sec-stats">
-                <h3 class="lead">Secondary Attributes</h3>
+            <div class="b-r" id="sec-stats">
+                <h3 class="group-end">Secondary Attributes</h3>
 
                 <div class="secondaries-row">
-                    <span class="sec-label">STR</span>
-                    <span class="sec-value" id="str">9</span>
+                    <span class="info-label">STR</span>
+                    <input
+                    class="info-value"
+                    id="str"
+                    onchange="updateValue(str)"></input>
                 </div>
 
-                <div class="secondaries-row light">
-                    <span class="sec-label">SPD</span>
-                    <span class="sec-value" id="spd">27</span>
+                <div class="secondaries-row dark">
+                    <span class="info-label">SPD</span>
+                    <input
+                    class="info-value"
+                    id="spd"
+                    onchange="updateValue(spd)"></input>
                 </div>
 
                 <div class="secondaries-row">
-                    <span class="sec-label">AGI</span>
-                    <span class="sec-value" id="agi">14</span>
+                    <span class="info-label">AGI</span>
+                    <input
+                    class="info-value"
+                    id="agi"
+                    onchange="updateValue(agi)"></input>
                 </div>
 
-                <div class="secondaries-row light">
-                    <span class="sec-label">PER</span>
-                    <span class="sec-value" id="per">6</span>
+                <div class="secondaries-row dark">
+                    <span class="info-label">PER</span>
+                    <input
+                    class="info-value"
+                    id="per"
+                    onchange="updateValue(per)"></input>
                 </div>
 
                 <div class="secondaries-row group-end">
-                    <span class="sec-label">CLR</span>
-                    <span class="sec-value" id="clr">8</span>
+                    <span class="info-label">CLR</span>
+                    <input
+                    class="info-value"
+                    id="clr"
+                    onchange="updateValue(clr)"></input>
                 </div>
 
                 <div class="secondaries-row lead">
-                    <span class="sec-label">Average</span>
-                    <span class="sec-value" id="avg"></span>
+                    <span class="info-label">Average</span>
+                    <span class="info-value" id="avg"></span>
                 </div>
 
                 <div class="secondaries-row">
@@ -115,7 +155,7 @@
         </section>
 
         <section id="temperament">
-            <div id="temp-stats">
+            <div class="b-r" id="temp-stats">
                 <div class="info-row" id="style">
                     <span class="info-label">Style</span>
                     <span class="info-value" id="age">Short-ranged</span>
