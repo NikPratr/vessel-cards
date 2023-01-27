@@ -8,6 +8,8 @@
     <title>Vessel Cards</title>
 </head>
 <body>
+    <div id="clickaway"></div>
+
     <div id="ui">
         <h1>Vessel Cards</h1>
         <button>Create</button>
@@ -17,7 +19,7 @@
     </div>
 
     <main id="card">
-        <section id="character">
+        <section id="character" class="hide-overflow">
             <div class="b-r" id="character-info">
                 <input
                     class="heading1"
@@ -72,7 +74,7 @@
                     </select>
                 </div>
 
-                <div class="info-row" id="autocomplete">
+                <div class="info-row relative-position" id="autocomplete">
                     <span class="info-label b-r">Guild</span>
                     <input
                         class="info-value"

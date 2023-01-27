@@ -16,6 +16,12 @@ body {
     justify-content: center;
     background-color: lightgray;
     font-family: 'arial';
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding-top: 8px;
 }
 
 h1 {
@@ -129,6 +135,7 @@ Card
     background-color: #FCF5E5;
 
     border-radius: 25px;
+
 }
 
 .heading1 {
@@ -197,6 +204,10 @@ Card
     height: 12.5%;
 }
 
+.info-row.relative-position {
+    position: relative;
+}
+
 .info-label {
     margin-left: 3px;
     height: 100%;
@@ -231,25 +242,27 @@ Card
     border: 1px solid lightgray;
 
     text-align: right;
+    z-index: 9999;
+    top: 18.75px;
+    right: 0;
+}
+
+#clickaway {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    content: '';
+    background: transparent;
+    z-index: 999;
 }
 
 .container-item {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-
-/* #container::before {
-    position: absolute;
-    top: -100vh;
-    bottom: -100vh;
-    left: -100vw;
-    right: -100vw;
-    display: block;
-    content: '';
-    background-color: blue;
-    z-index: -1;
-    transform: translateZ(-1px);
-} */
 
 .container-item:hover {
     color: white;

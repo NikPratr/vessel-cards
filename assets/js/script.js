@@ -14,6 +14,9 @@ const alliance = document.getElementById('alliance');
 const guildContainer = document.getElementById('container');
 const guildItem = document.getElementById('container-item');
 
+// div to simulate blur on click elsewhere in the document
+const clickaway = document.getElementById('clickaway');
+
 // Secondaries
 const str = document.getElementById('str');
 const spd = document.getElementById('spd');
@@ -447,6 +450,12 @@ function nextFocus() {
 document.addEventListener('keyup', (event) => {
     if ((event.key === 'Enter') && document.activeElement.nodeName === 'INPUT') {
         nextFocus();
+        removeList();
+    }
+
+    // jank?
+    if (event.key === 'Tab') {
+        removeList();
     }
 });
 
@@ -535,7 +544,7 @@ function generateGuilds() {
                 list.push(guilds[i].name);
             }
         }
-    
+
         for ( i = 0; i < 10; i++) {
             const newSpan = document.createElement('div');
             newSpan.classList.add('container-item');
@@ -545,28 +554,25 @@ function generateGuilds() {
 
                 const found = guilds.find(g => g.name === guild.value);
                 alliance.textContent = found.alliance || 'Unaligned';
-                guildChanged = true;
+                removeList();
             });
             guildContainer.appendChild(newSpan);
         }
-        
-        guildContainer.style.width = guild.clientWidth + 'px';
-        guildContainer.style.right = (guild.offsetLeft + guild.clientWidth + 5) + 'px';
-        guildContainer.style.top = guild.offsetTop + guild.offsetHeight + 'px';
-    } else { guildContainer.style.display = 'none'; }
 
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('container-item')) {
-            console.log('hello world');
-            guild.blur();
-        }
-    })
+        guildContainer.style.width = guild.clientWidth + 'px';
+        clickaway.style.display = 'block';
+        clickaway.addEventListener('click', removeList);
+    } else {
+        guildContainer.style.display = 'none';
+        clickaway.style.display = 'none';
+    }
 }
 
 function removeList() {
-        guildContainer.innerHTML = '';
-        guildContainer.style.display = 'none';
-        guild.value.toUpperCase();
+    guildContainer.innerHTML = '';
+    guildContainer.style.display = 'none';
+    guild.value.toUpperCase();
+    clickaway.style.display = 'none';
 }
 
 {
@@ -610,7 +616,6 @@ race.addEventListener('change', () => updateColor(race));
 
 guild.addEventListener('input', generateGuilds);
 guild.addEventListener('focus', generateGuilds);
-// guild.addEventListener('blur', removeList);
 
 
 // Secondaries
