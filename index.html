@@ -23,7 +23,7 @@
                     class="heading1"
                     id="name"
                     autocomplete="off"
-                    placeholder="Soldier">
+                    placeholder="Unknown Warrior">
                 </input>
                 <h2 class="group-end" id="title">vigil</h2>
 
@@ -44,32 +44,43 @@
 
                 <div class="info-row">
                     <span class="info-label b-r">Height</span>
+                    <!-- <select class="info-value" id="height">
+                        <option value="" disabled selected hidden>Unknown</option>
+                    </select> -->
                     <input
-                    class="info-value"
-                    id="height"
-                    autocomplete="off"
-                    placeholder="Unknown">
-                </input>
+                        class="info-value"
+                        id="height"
+                        autocomplete="off"
+                        placeholder="Unknown"
+                        data-index = "0">
+                    </input>
                 </div>
 
                 <div class="info-row group-end">
                     <span class="info-label b-r">Race</span>
-                    <input
-                    class="info-value"
-                    id="race"
-                    autocomplete="off"
-                    placeholder="Unknown">
-                </input>
+                    <select class="info-value" id="race">
+                        <option value="" disabled selected hidden>Unknown</option>
+                        <option value="Akhanian">Akhanian</option>
+                        <option value="Drega">Drega</option>
+                        <option value="Ellinian">Ellinian</option>
+                        <option value="Griyan">Griyan</option>
+                        <option value="Ourk">Ourk</option>
+                        <option value="Tairo">Tairo</option>
+                        <option value="Venoa">Venoa</option>
+                        <option value="Wehrin">Wehrin</option>
+                        <option value="Wezlan">Wezlan</option>
+                    </select>
                 </div>
 
-                <div class="info-row">
+                <div class="info-row" id="autocomplete">
                     <span class="info-label b-r">Guild</span>
                     <input
-                    class="info-value"
-                    id="guild"
-                    autocomplete="off"
-                    placeholder="Unknown">
-                </input>
+                        class="info-value"
+                        id="guild"
+                        autocomplete="off"
+                        placeholder="Unknown">
+                    </input>
+                    <div id="container"></div>
                 </div>
 
                 <div class="info-row">
@@ -90,41 +101,32 @@
                 <div class="secondaries-row">
                     <span class="info-label">STR</span>
                     <input
-                    class="info-value"
-                    id="str"
-                    onchange="updateValue(str)"></input>
+                        class="info-value"
+                        id="str">
+                    </input>
                 </div>
 
                 <div class="secondaries-row dark">
                     <span class="info-label">SPD</span>
                     <input
-                    class="info-value"
-                    id="spd"
-                    onchange="updateValue(spd)"></input>
+                    class="info-value" id="spd"></input>
                 </div>
 
                 <div class="secondaries-row">
                     <span class="info-label">AGI</span>
-                    <input
-                    class="info-value"
-                    id="agi"
-                    onchange="updateValue(agi)"></input>
+                    <input class="info-value" id="agi"></input>
                 </div>
 
                 <div class="secondaries-row dark">
                     <span class="info-label">PER</span>
                     <input
-                    class="info-value"
-                    id="per"
-                    onchange="updateValue(per)"></input>
+                    class="info-value" id="per"></input>
                 </div>
 
                 <div class="secondaries-row group-end">
                     <span class="info-label">CLR</span>
                     <input
-                    class="info-value"
-                    id="clr"
-                    onchange="updateValue(clr)"></input>
+                    class="info-value" id="clr"></input>
                 </div>
 
                 <div class="secondaries-row lead">

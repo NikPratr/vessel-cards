@@ -1,10 +1,25 @@
-const name = document.getElementById('name').value;
+// --------------------------------
+// HTML Variables
+// --------------------------------
+const inputs = document.getElementsByTagName('input');
 
-const str = parseInt(document.getElementById('str').value);
-const spd = parseInt(document.getElementById('spd').value);
-const agi = parseInt(document.getElementById('agi').value);
-const per = parseInt(document.getElementById('per').value);
-const clr = parseInt(document.getElementById('clr').value);
+// Character information
+const age = document.getElementById('age');
+const birthDate = document.getElementById('birth-date');
+const race = document.getElementById('race');
+const height = document.getElementById('height');
+const guild = document.getElementById('guild');
+const alliance = document.getElementById('alliance');
+
+const guildContainer = document.getElementById('container');
+const guildItem = document.getElementById('container-item');
+
+// Secondaries
+const str = document.getElementById('str');
+const spd = document.getElementById('spd');
+const agi = document.getElementById('agi');
+const per = document.getElementById('per');
+const clr = document.getElementById('clr');
 const avg = document.getElementById('avg');
 const secondariesRow = document.getElementById('secondaries-block-1');
 const radar = document.getElementById('radar');
@@ -12,22 +27,660 @@ const radar = document.getElementById('radar');
 const primariesRow = document.getElementById('primaries-row');
 const primariesBar = document.getElementById('bar');
 
-avg.textContent = ((str + spd + agi + per + clr) / 5).toFixed(1);
+// --------------------------------
+// Javascript Variables
+// --------------------------------
 
-function updateValue(stat) {
-    var currentValue = stat;
-    stat = currentValue;
+// Character information
+const races = [
+    'Akhanian',
+    'Drega',
+    'Ellinian',
+    'Griyan',
+    'Ourk',
+    'Tairo',
+    'Venoa',
+    'Wehrin',
+    'Wezlan'
+];
 
-    currentRadar.update();
+const guilds = [
+    {
+        name: 'Aegix',
+        alliance: null,
+        standing: true
+    },
+    {
+        name: 'Arbormill',
+        alliance: 'Nivea',
+        standing: true
+    },
+    {
+        name: 'Armora',
+        alliance: 'Boulder',
+        standing: true
+    },
+    {
+        name: 'Arxikara',
+        alliance: 'Nivea',
+        standing: true
+    },
+    {
+        name: 'Aygennore',
+        alliance: null,
+        standing: true
+    },
+    {
+        name: 'Befford',
+        alliance: 'Nivea',
+        standing: true
+    },
+    {
+        name: 'Black Forge',
+        alliance: 'Nivea',
+        standing: true
+    },
+    {
+        name: 'Blade Planes',
+        alliance: null,
+        standing: false
+    },
+    {
+        name: 'Daghurst',
+        alliance: 'Void Dream Deserters',
+        standing: true
+    },
+    {
+        name: 'Deadrun',
+        alliance: null,
+        standing: false
+    },
+    {
+        name: 'Befford',
+        alliance: 'Nivea',
+        standing: true
+    },
+    {
+        name: 'Delywara',
+        alliance: 'Ansydel',
+        standing: true
+    },
+    {
+        name: 'Dominion',
+        alliance: "Founders' Alliance",
+        standing: true
+    },
+    {
+        name: 'Ebonheart',
+        alliance: 'Beue Bell Alliance',
+        standing: true
+    },
+    {
+        name: 'Ellyndowin',
+        alliance: 'Ansydel',
+        standing: true
+    },
+    {
+        name: 'Faeodail',
+        alliance: null,
+        standing: true
+    },
+    {
+        name: 'Farwater',
+        alliance: null,
+        standing: true
+    },
+    {
+        name: 'Feltch',
+        alliance: null,
+        standing: false
+    },
+    {
+        name: 'Frostmore',
+        alliance: "Founders' Alliance",
+        standing: true
+    },
+    {
+        name: 'Gadenwazier',
+        alliance: 'Azilla Lassezlond',
+        standing: true
+    },
+    {
+        name: 'Ghenmore',
+        alliance: "Founders' Alliance",
+        standing: true
+    },
+    {
+        name: 'Golden Glade Planes',
+        alliance: "August Vow",
+        standing: true
+    },
+    {
+        name: 'Great Porsastone',
+        alliance: 'Boulder',
+        standing: true
+    },
+    {
+        name: 'Green Borough',
+        alliance: null,
+        standing: false
+    },
+    {
+        name: 'Greengard',
+        alliance: 'August Vow',
+        standing: true
+    },
+    {
+        name: 'Greia',
+        alliance: 'Void Dream Deserters',
+        standing: true
+    },
+    {
+        name: 'Gullkress',
+        alliance: null,
+        standing: true
+    },
+    {
+        name: 'Hastinia',
+        alliance: 'Void Dream Deserters',
+        standing: true
+    },
+    {
+        name: 'Herbora',
+        alliance: null,
+        standing: true
+    },
+    {
+        name: 'High Aegis',
+        alliance: "Founders' Alliance",
+        standing: true
+    },
+    {
+        name: 'Hoarstead',
+        alliance: null,
+        standing: false
+    },
+    {
+        name: 'Kaya',
+        alliance: 'Boulder',
+        standing: true
+    },
+    {
+        name: 'Lavorgrave',
+        alliance: null,
+        standing: true
+    },
+    {
+        name: 'Llesowyl',
+        alliance: null,
+        standing: true
+    },
+    {
+        name: "Maritime Trader's Guild",
+        alliance: 'Arbicastar',
+        standing: true
+    },
+    {
+        name: 'Meridale',
+        alliance: 'Nivea',
+        standing: true
+    },
+    {
+        name: 'Merigan',
+        alliance: 'Nivea',
+        standing: true
+    },
+    {
+        name: 'Nabella',
+        alliance: 'Nivea',
+        standing: true
+    },
+    {
+        name: "Naks'rakmix'vinik",
+        alliance: null,
+        standing: true
+    },
+    {
+        name: 'Nambindizlin',
+        alliance: 'Azilla Lassezlond',
+        standing: true
+    },
+    {
+        name: 'Namora',
+        alliance: 'Boulder',
+        standing: true
+    },
+    {
+        name: 'New Haven',
+        alliance: 'Nivea',
+        standing: true
+    },
+    {
+        name: 'Newcrest',
+        alliance: null,
+        standing: true
+    },
+    {
+        name: 'Norawindia',
+        alliance: null,
+        standing: true
+    },
+    {
+        name: 'Norwyllia',
+        alliance: 'Ansydel',
+        standing: true
+    },
+    {
+        name: 'Oberston',
+        alliance: 'Nivea',
+        standing: true
+    },
+    {
+        name: 'Ohrang',
+        alliance: null,
+        standing: true
+    },
+    {
+        name: 'Old Capri',
+        alliance: null,
+        standing: true
+    },
+    {
+        name: 'Oradoroh',
+        alliance: null,
+        standing: true
+    },
+    {
+        name: 'Rawaerk',
+        alliance: 'August Vow',
+        standing: true
+    },
+    {
+        name: 'Reag',
+        alliance: 'Nivea',
+        standing: true
+    },
+    {
+        name: 'Redclaw',
+        alliance: 'Beue Bell Alliance',
+        standing: true
+    },
+    {
+        name: 'Reddale',
+        alliance: 'Nivea',
+        standing: true
+    },
+    {
+        name: 'Riondesmal',
+        alliance: null,
+        standing: false
+    },
+    {
+        name: 'Roodhaven',
+        alliance: null,
+        standing: false
+    },
+    {
+        name: 'Ryxal',
+        alliance: 'Azilla Lassezlond',
+        standing: true
+    },
+    {
+        name: 'Selssawore',
+        alliance: null,
+        standing: true
+    },
+    {
+        name: 'Serabose',
+        alliance: 'Boulder',
+        standing: true
+    },
+    {
+        name: 'Silverspire',
+        alliance: 'Arbicastar',
+        standing: true
+    },
+    {
+        name: 'Soffemound',
+        alliance: 'Boulder',
+        standing: true
+    },
+    {
+        name: 'Steonella',
+        alliance: null,
+        standing: true
+    },
+    {
+        name: 'Tara Madres',
+        alliance: 'Arbicastar',
+        standing: true
+    },
+    {
+        name: 'Tunstead',
+        alliance: 'Nivea',
+        standing: true
+    },
+    {
+        name: 'Umbercopse',
+        alliance: null,
+        standing: true
+    },
+    {
+        name: 'Vandel',
+        alliance: 'Andsydel',
+        standing: true
+    },
+    {
+        name: 'Vindenburg',
+        alliance: 'Nivea',
+        standing: true
+    },
+    {
+        name: 'Vinroove',
+        alliance: 'Beue Bell Alliance',
+        standing: true
+    },
+    {
+        name: 'Wyl',
+        alliance: 'Ansydel',
+        standing: true
+    },
+    {
+        name: 'Wysper',
+        alliance: 'Ansydel',
+        standing: true
+    },
+    {
+        name: 'Wytheog',
+        alliance: null,
+        standing: true
+    },
+    {
+        name: 'Yage',
+        alliance: null,
+        standing: false
+    },
+];
+let guildChanged = false;
+
+// Secondaries
+const secondaries = [str, spd, agi, per, clr];
+
+const safe = [
+    'Tab',
+    'Backspace',
+    'Shift',
+    'ArrowLeft',
+    'ArrowRight',
+    'ArrowUp',
+    'ArrowDown'
+];
+const zero = /[0-9]|Backspace/;
+const one = /[1-9]|Backspace/;
+
+let radarMin = 0;
+let radarMax = 33;
+let radarStep = 11;
+
+// --------------------------------
+// Shortcuts
+// --------------------------------
+
+const once = { once: true };
+
+// --------------------------------
+// Scripting
+// --------------------------------
+
+// General
+function nextFocus() {
+    for (i=0; i<inputs.length; i++) {
+        if (inputs[i] === document.activeElement) {
+            if (i + 1 < inputs.length) {
+                inputs[i + 1].focus();
+            }
+            break;
+        }
+    }
+};
+
+document.addEventListener('keyup', (event) => {
+    if ((event.key === 'Enter') && document.activeElement.nodeName === 'INPUT') {
+        nextFocus();
+    }
+});
+
+window.addEventListener('resize', generateGuilds);
+
+// Character information
+function validateAge1(event) {
+    if (this.value.length === 0) {
+        if (!one.test(event.key) && safe.indexOf(event.key) === -1) {
+            event.preventDefault();
+        } 
+    } else if (this.value.length < 3) {
+        if (!zero.test(event.key) && safe.indexOf(event.key) === -1) {
+            event.preventDefault();
+        }
+    } else if (this.value.length >= 3) {
+        if (window.getSelection().toString() !== this.value && safe.indexOf(event.key) === -1) {
+            event.preventDefault();
+        } else if (window.getSelection().toString() === this.value && !one.test(event.key) && safe.indexOf(event.key) === -1) {
+            event.preventDefault();
+        }
+    }
+};
+
+function validateAge2(event) {
+    if (this.value.length >= 3 && safe.indexOf(event.key) === -1 && zero.test(event.key)) {
+        event.preventDefault();
+    }
+};
+
+function updateAge() {
+    if (age.value === '') {
+        birthDate.textContent = 'Unknown';
+        birthDate.style.color = 'gray';
+    } else {
+        birthDate.textContent = 10003 - +age.value;
+        birthDate.style.color = 'black';
+    }
+};
+
+function handleHeight(event) {
+    if (event.key === 'Enter' || event.key === 'Tab') {
+        return
+    } else { event.preventDefault(); }
+ 
+    if (height.dataset.index === '0') {
+        if (one.test(event.key)) {
+            this.value = event.key + "'" + '0' + '"';
+            this.selectionStart = 3;
+            this.selectionEnd = 3;
+
+            if(event.key === '8') {
+                height.dataset.index = '3';
+            } else { height.dataset.index = '1'; }
+        }
+    } else if (height.dataset.index === '1') {
+        if (one.test(event.key)) {
+            this.value = this.value.slice(0, 2) + event.key + '"';
+            this.selectionStart = 3;
+            this.selectionEnd = 3;
+            height.dataset.index = '2';
+        }
+    } else if (height.dataset.index === '2') {
+        if (this.value[2] === '1' && (event.key === '0' || event.key === '1')) {
+            this.value = this.value.slice(0, 3) + event.key + '"';
+            this.selectionStart = 4;
+            this.selectionEnd = 4;
+            height.dataset.index = '3';
+        }
+    }
+
+    if(event.key === 'Backspace') {
+        this.value = '';
+        height.dataset.index = '0';
+    }
+};
+
+function generateGuilds() {
+    guildContainer.innerHTML = '';
+    guildContainer.style.display = 'flex';
+    let list = [];
+
+    if (guild.value !== '') {
+        for ( i = 0; i < guilds.length; i++ ) {
+            if (guilds[i].name.toUpperCase().startsWith(guild.value.toUpperCase())) {
+                list.push(guilds[i].name);
+            }
+        }
+    
+        for ( i = 0; i < 10; i++) {
+            const newSpan = document.createElement('div');
+            newSpan.classList.add('container-item');
+            newSpan.textContent = list[i];
+            newSpan.addEventListener('click', function() {
+                guild.value = this.textContent;
+
+                const found = guilds.find(g => g.name === guild.value);
+                alliance.textContent = found.alliance || 'Unaligned';
+                guildChanged = true;
+            });
+            guildContainer.appendChild(newSpan);
+        }
+        
+        guildContainer.style.width = guild.clientWidth + 'px';
+        guildContainer.style.right = (guild.offsetLeft + guild.clientWidth + 5) + 'px';
+        guildContainer.style.top = guild.offsetTop + guild.offsetHeight + 'px';
+    } else { guildContainer.style.display = 'none'; }
+
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('container-item')) {
+            console.log('hello world');
+            guild.blur();
+        }
+    })
 }
 
+function removeList() {
+        guildContainer.innerHTML = '';
+        guildContainer.style.display = 'none';
+        guild.value.toUpperCase();
+}
+
+{
+    // List version of height
+
+    // let x = 3;
+    // let y = 10;
+    
+    // function generateHeights() {
+    //     while (x < 9) {
+    //         while (y < 12) {
+                
+    //             const newOption = document.createElement('option');
+    //             newOption.setAttribute('value', x + "'" + y + '"');
+    //             newOption.textContent = x + "'" + y + '"';
+    //             console.log(newOption);
+    //             height.appendChild(newOption);
+                
+    //             if (x === 8 && y === 0) {
+    //                 break
+    //             }
+    
+    //             y++
+                
+    //         }
+    //         y = 0;
+    //         x++
+    //     }
+    // }
+    
+    // generateHeights();
+}
+
+age.addEventListener('keydown', validateAge1);
+age.addEventListener('keyup', validateAge2);
+age.addEventListener('input', updateAge);
+
+height.addEventListener('keydown', handleHeight);
+
+race.addEventListener('change', () => updateColor(race));
+
+guild.addEventListener('input', generateGuilds);
+guild.addEventListener('focus', generateGuilds);
+// guild.addEventListener('blur', removeList);
+
+
+// Secondaries
+function validateSecondaries1(event) {
+    if (this.value.length === 0) {
+        if (!one.test(event.key) && safe.indexOf(event.key) === -1) {
+            event.preventDefault();
+        } 
+    } else if (this.value.length < 2) {
+        if (!zero.test(event.key) && safe.indexOf(event.key) === -1) {
+            event.preventDefault();
+        }
+    } else if (this.value.length >= 2) {
+        if (window.getSelection().toString() !== this.value && safe.indexOf(event.key) === -1) {
+            event.preventDefault();
+        } else if (window.getSelection().toString() === this.value && !one.test(event.key) && safe.indexOf(event.key) === -1) {
+            event.preventDefault();
+        }
+    }
+};
+
+function validateSecondaries2(event) {
+    if (this.value.length >= 2 && safe.indexOf(event.key) === -1 && zero.test(event.key)) {
+        nextFocus();
+    }
+};
+
+function updateSecondaries(n, stat) {
+    let currentAvg = +str.value + +spd.value + +agi.value + +per.value + +clr.value;
+    avg.textContent = (currentAvg / 5).toFixed(1);
+
+    currentRadar.data.datasets[0].data[n] = stat.value;
+    currentRadar.update();
+    
+    if(Math.max( str.value, spd.value, agi.value, per.value, clr.value) > 33) {
+        radarMax = 99;
+        currentRadar.options.scales.r.max = radarMax;
+
+        radarStep = 33;
+        currentRadar.options.scales.r.ticks.stepSize = radarStep;
+
+        currentRadar.update();
+    } else {
+        radarMax = 33;
+        currentRadar.options.scales.r.max = radarMax;
+
+        radarStep = 11;
+        currentRadar.options.scales.r.ticks.stepSize = radarStep;
+
+        currentRadar.update();
+    }
+};
+
+for (i=0; i<secondaries.length; i++) {
+    secondaries[i].addEventListener(
+        'input', ( function(index) { return () => updateSecondaries(index, secondaries[index]) } ) (i)
+    );
+
+    secondaries[i].addEventListener('keydown', validateSecondaries1);
+    secondaries[i].addEventListener('keyup', validateSecondaries2);
+};
+
+// Charts
 const currentRadar = new Chart(radar, {
     type: 'radar',
     data: {
-        labels: ['STR', 'SPD', 'AGI', 'PER', 'INT'],
+        labels: ['STR', 'SPD', 'AGI', 'PER', 'CLR'],
         datasets: [{
             label: 'Secondaries',
-            data: [str, spd, agi, per, clr],
+            data: [str.value, spd.value, agi.value, per.value, clr.value],
             borderColor: '#D21404',
             backgroundColor: 'rgba(154, 42, 42, 0.4)'
         }]
@@ -40,15 +693,15 @@ const currentRadar = new Chart(radar, {
         },
         scales: {
             r: {
-                min: 0,
-                max: 33,
+                min: radarMin,
+                max: radarMax,
                 grid: {
                     color: 'black',
                 },
                 ticks: {
-                    stepSize: 11,
+                    stepSize: radarStep,
                     callback: function(x) {
-                        if (x > 0 && x < 33) {
+                        if (x !== radarMax) {
                             return "";
                         } else {
                             return x;
