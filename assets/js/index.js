@@ -27,8 +27,40 @@ const avg = document.getElementById('avg');
 const secondariesRow = document.getElementById('secondaries-block-1');
 const radar = document.getElementById('radar');
 
+// Primaries
 const primariesRow = document.getElementById('primaries-row');
-const primariesBar = document.getElementById('bar');
+const barHolder = document.getElementById('bar-holder');
+const Bar = document.getElementById('bar');
+const primariesInputs = document.getElementById('bar-inputs');
+
+const vitCap = document.getElementById('vit-cap');
+const vitReg = document.getElementById('vit-reg');
+const vitPtc = document.getElementById('vit-ptc');
+const bStr = document.getElementById('bStr');
+
+const natCap = document.getElementById('nat-cap');
+const natReg = document.getElementById('nat-reg');
+const natPtc = document.getElementById('nat-ptc');
+const natLnk = document.getElementById('nat-lnk');
+
+const astCap = document.getElementById('ast-cap');
+const astReg = document.getElementById('ast-reg');
+const astPtc = document.getElementById('ast-ptc');
+const astLnk = document.getElementById('ast-lnk');
+
+const voidCap = document.getElementById('void-cap');
+const voidReg = document.getElementById('void-reg');
+const voidPtc = document.getElementById('void-ptc');
+const voidLnk = document.getElementById('void-lnk');
+
+const vitDisplay = document.getElementById('vital');
+const natDisplay = document.getElementById('nature');
+const astDisplay = document.getElementById('astral');
+const voidDisplay = document.getElementById('void');
+
+const pb1 = document.getElementById('primaries-block-1');
+const pb2 = document.getElementById('primaries-block-2');
+const pb3 = document.getElementById('primaries-block-3');
 
 // --------------------------------
 // Javascript Variables
@@ -66,11 +98,40 @@ let radarMin = 0;
 let radarMax = 33;
 let radarStep = 11;
 
+// Primaries
+let barMin = 0;
+let barMax = 33;
+let barStep = 11;
+
+const primaries = [
+    vitCap,
+    vitReg,
+    vitPtc,
+    bStr, 
+    natCap,
+    natReg,
+    natPtc,
+    natLnk,
+    astCap,
+    astReg,
+    astPtc,
+    astLnk,
+    voidCap,
+    voidReg,
+    voidPtc,
+    voidLnk
+];
+
+const displays = [vitDisplay, natDisplay, astDisplay, voidDisplay];
+
+vitDisplay.style.display = 'flex';
+
 // --------------------------------
 // Shortcuts
 // --------------------------------
 
 const once = { once: true };
+
 
 // --------------------------------
 // Scripting
@@ -85,6 +146,30 @@ function nextFocus() {
             }
             break;
         }
+    }
+};
+
+function validateStats1(event) {
+    if (this.value.length === 0) {
+        if (!one.test(event.key) && safe.indexOf(event.key) === -1) {
+            event.preventDefault();
+        } 
+    } else if (this.value.length < 2) {
+        if (!zero.test(event.key) && safe.indexOf(event.key) === -1) {
+            event.preventDefault();
+        }
+    } else if (this.value.length >= 2) {
+        if (window.getSelection().toString() !== this.value && safe.indexOf(event.key) === -1) {
+            event.preventDefault();
+        } else if (window.getSelection().toString() === this.value && !one.test(event.key) && safe.indexOf(event.key) === -1) {
+            event.preventDefault();
+        }
+    }
+};
+
+function validateStats2(event) {
+    if (this.value.length >= 2 && safe.indexOf(event.key) === -1 && zero.test(event.key)) {
+        nextFocus();
     }
 };
 
@@ -260,30 +345,6 @@ guild.addEventListener('focus', generateGuilds);
 
 
 // Secondaries
-function validateSecondaries1(event) {
-    if (this.value.length === 0) {
-        if (!one.test(event.key) && safe.indexOf(event.key) === -1) {
-            event.preventDefault();
-        } 
-    } else if (this.value.length < 2) {
-        if (!zero.test(event.key) && safe.indexOf(event.key) === -1) {
-            event.preventDefault();
-        }
-    } else if (this.value.length >= 2) {
-        if (window.getSelection().toString() !== this.value && safe.indexOf(event.key) === -1) {
-            event.preventDefault();
-        } else if (window.getSelection().toString() === this.value && !one.test(event.key) && safe.indexOf(event.key) === -1) {
-            event.preventDefault();
-        }
-    }
-};
-
-function validateSecondaries2(event) {
-    if (this.value.length >= 2 && safe.indexOf(event.key) === -1 && zero.test(event.key)) {
-        nextFocus();
-    }
-};
-
 function updateSecondaries(n, stat) {
     let currentAvg = +str.value + +spd.value + +agi.value + +per.value + +clr.value;
     avg.textContent = (currentAvg / 5).toFixed(1);
@@ -310,14 +371,130 @@ function updateSecondaries(n, stat) {
     }
 };
 
-for (let i=0; i<secondaries.length; i++) {
+for (let i = 0; i < secondaries.length; i++) {
     secondaries[i].addEventListener(
         'input', ( function(index) { return () => updateSecondaries(index, secondaries[index]) } ) (i)
     );
 
-    secondaries[i].addEventListener('keydown', validateSecondaries1);
-    secondaries[i].addEventListener('keyup', validateSecondaries2);
+    secondaries[i].addEventListener('keydown', validateStats1);
+    secondaries[i].addEventListener('keyup', validateStats2);
 };
+
+// Primaries
+
+barHolder.addEventListener('click', event => {
+    barHolder.style.display = 'none';
+    primariesInputs.style.display = 'flex';
+});
+
+primariesInputs.addEventListener('click', event => {
+    if (event.target === primariesInputs) {
+        barHolder.style.display = 'block';
+        primariesInputs.style.display = 'none';
+
+        if (vitDisplay.style.display === 'flex') {
+            for (let i = 0; i < 4; i++) {
+                currentBar.data.datasets[0].data[i] = vitDisplay.children[i].lastElementChild.value;
+            }
+        } else if (natDisplay.style.display === 'flex') {
+            for (let i = 0; i < 4; i++) {
+                currentBar.data.datasets[0].data[i] = natDisplay.children[i].lastElementChild.value;
+            }
+        } else if (astDisplay.style.display === 'flex') {
+            for (let i = 0; i < 4; i++) {
+                currentBar.data.datasets[0].data[i] = astDisplay.children[i].lastElementChild.value;
+            }
+        }  else if (voidDisplay.style.display === 'flex') {
+            for (let i = 0; i < 4; i++) {
+                currentBar.data.datasets[0].data[i] = voidDisplay.children[i].lastElementChild.value;
+            }
+        }
+        currentBar.update();
+
+        updateBarMax();
+    } else { return }
+});
+
+for (let i = 0; i < primaries.length; i++) {
+    console.log(primaries, i)
+    primaries[i].addEventListener('keydown', validateStats1);
+    primaries[i].addEventListener('keyup', validateStats2);
+}
+
+function updateBarMax() {
+    let barData = currentBar.data.datasets[0].data;
+    
+    if(Math.max( barData[0], barData[1], barData[2], barData[3]) > 33) {
+        barMax = 99;
+        currentBar.options.scales.y.max = barMax;
+
+        barStep = 33;
+        currentBar.options.scales.y.ticks.stepSize = barStep;
+    } else {
+        barMax = 33;
+        currentBar.options.scales.y.max = barMax;
+
+        barStep = 11;
+        currentBar.options.scales.y.ticks.stepSize = barStep;
+    }
+
+    currentBar.update();
+}
+
+primariesRow.addEventListener('click', event => {
+    let vaporOrder = ['Vital Vapor', 'Nature Vapor', 'Astral Vapor', 'Void Vapor'];
+    let index = vaporOrder.indexOf(event.target.textContent);
+
+    let clicked = event.target.textContent.toLowerCase().split(' ', 1).toString();
+
+    vaporOrder.splice(index, 1);
+
+    currentBar.data.datasets[0].label = event.target.textContent + ' Primaries';
+    pb1.textContent = vaporOrder[0];
+    pb2.textContent = vaporOrder[1];
+    pb3.textContent = vaporOrder[2];
+
+
+    for (let i = 0; i < displays.length; i++) {
+        displays[i].style.display = 'none';
+    }
+
+    if (clicked === 'vital') {
+        vitDisplay.style.display = 'flex';
+
+        currentBar.data.datasets[0].borderColor = 'rgba(40, 40, 160, 1)';
+        currentBar.data.datasets[0].backgroundColor = 'rgba(40, 40, 160, 0.4)';
+        for (let i = 0; i < 4; i++) {
+            currentBar.data.datasets[0].data[i] = vitDisplay.children[i].lastElementChild.value;
+        }
+    } else if (clicked === 'nature') {
+        natDisplay.style.display = 'flex';
+
+        currentBar.data.datasets[0].borderColor = 'rgba(40, 160, 40, 1)';
+        currentBar.data.datasets[0].backgroundColor = 'rgba(40, 160, 40, 0.4)';
+        for (let i = 0; i < 4; i++) {
+            currentBar.data.datasets[0].data[i] = natDisplay.children[i].lastElementChild.value;
+        }
+    } else if (clicked === 'astral') {
+        astDisplay.style.display = 'flex';
+
+        currentBar.data.datasets[0].borderColor = 'rgba(150, 150, 150, 1)';
+        currentBar.data.datasets[0].backgroundColor = 'rgba(150, 150, 150, 0.4)';
+        for (let i = 0; i < 4; i++) {
+            currentBar.data.datasets[0].data[i] = astDisplay.children[i].lastElementChild.value;
+        }
+    } else if (clicked === 'void') {
+        voidDisplay.style.display = 'flex';
+
+        currentBar.data.datasets[0].borderColor = 'rgba(25, 25, 25, 1)';
+        currentBar.data.datasets[0].backgroundColor = 'rgba(25, 25, 25, 0.4)';
+        for (let i = 0; i < 4; i++) {
+            currentBar.data.datasets[0].data[i] = voidDisplay.children[i].lastElementChild.value;
+        }
+    }
+
+    currentBar.update();
+});
 
 // Charts
 const currentRadar = new Chart(radar, {
@@ -326,7 +503,7 @@ const currentRadar = new Chart(radar, {
         labels: ['STR', 'SPD', 'AGI', 'PER', 'CLR'],
         datasets: [{
             label: 'Secondaries',
-            data: [str.value, spd.value, agi.value, per.value, clr.value],
+            data: [0, 0, 0, 0, 0],
             borderColor: '#D21404',
             backgroundColor: 'rgba(154, 42, 42, 0.4)'
         }]
@@ -365,15 +542,15 @@ const currentRadar = new Chart(radar, {
     }
 });
 
-new Chart(primariesBar, {
+const currentBar = new Chart(Bar, {
     type: 'bar',
     data: {
         labels: ['CAP', 'REG', 'PTC', 'bSTR'],
         datasets: [{
-            label: 'Vital Vapor Primaries',
-            data: [9, 20, 10, 4],
-            backgroundColor: 'rgba(154, 42, 42, 0.4)',
-            borderColor: 'rgba(154, 42, 42)',
+            label: 'Vital Vapor',
+            data: [0, 0, 0, 0],
+            borderColor: 'rgba(40, 40, 160, 1)',
+            backgroundColor: 'rgba(40, 40, 160, 0.4)',
             borderWidth: 1
         }]
     },
@@ -383,16 +560,19 @@ new Chart(primariesBar, {
                 labels: {
                     boxWidth: 0
                 }
+            },
+            tooltip: {
+                enabled: false
             }
         },
         scales: {
             y: {
-                min: 0,
-                max: 33,
+                min: barMin,
+                max: barMax,
                 ticks: {
-                    stepSize: 11,
+                    stepSize: barStep,
                     callback: function(x) {
-                        if (x > 0 && x < 33) {
+                        if (x > 0 && x < barMax) {
                             return "";
                         } else {
                             return x;

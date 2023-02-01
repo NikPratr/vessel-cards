@@ -67,6 +67,84 @@ option {
     background-color: #FCF5E5;
 }
 
+.legendary-container {
+    display: block;
+    position: relative;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #FCF5E5;
+    border: 1px solid;
+    border-radius: 3px;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+input[type="checkbox"]:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkmark:after {
+    left: 4px;
+    top: 1px;
+    width: 5px;
+    height: 8px;
+    border: solid #FCF5E5;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(35deg);
+    -ms-transform: rotate(35deg);
+    transform: rotate(35deg);
+}
+
+#vit-checkmark:hover {
+    background-color: rgba(40, 40, 160, 0.4);
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked ~ #vit-checkmark {
+    background-color: rgba(40, 40, 160, 1);
+}
+
+#nat-checkmark:hover {
+    background-color: rgba(40, 160, 40, 0.4);
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked ~ #nat-checkmark {
+    background-color: rgba(40, 160, 40, 1);
+}
+
+#ast-checkmark:hover {
+    background-color: rgba(150, 150, 150, 0.4);
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked ~ #ast-checkmark {
+    background-color: rgba(150, 150, 150, 1);
+}
+
+#void-checkmark:hover {
+    background-color: rgba(25, 25, 25, 0.4);
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked ~ #void-checkmark {
+    background-color: rgba(25, 25, 25, 1);
+}
+
 *::placeholder {
     color: gray !important;
     opacity: 1 !important;
@@ -160,6 +238,14 @@ Card
 
 .b-r {
     border-right: 1px solid;
+}
+
+.p-b {
+    padding-bottom: 3px;
+}
+
+.p-t {
+    padding-top: 3px
 }
 
 #card input {
@@ -391,13 +477,61 @@ Card
 }
 
 .primaries-block {
+    padding-top: 1px;
     height: 100%;
     width: 33%;
+
+    text-align: center;
+}
+
+.primaries-block:hover {
+    cursor: pointer;
 }
 
 #primaries-block-2 {
     border-width: 0 1px 0 1px;
     border-style: solid;
+}
+
+#bar-inputs {
+    display: none;
+    height: 89.6%;
+    width: 100%;
+}
+
+.inputs-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    width: 80%;
+    height: 65%;
+}
+
+.stat-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#bar-inputs input {
+    border: 1px solid;
+    border-radius: 3px;
+}
+
+#vital {
+    display: none;
+}
+
+#nature {
+    display: none;
+}
+
+#astral {
+    display: none;
+}
+
+#void {
+    display: none;
 }
 
 #bar-holder {

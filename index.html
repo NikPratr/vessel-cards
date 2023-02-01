@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Vessel Cards</title>
 </head>
-<body>
     <div id="clickaway"></div>
 
     <div id="ui">
@@ -46,9 +45,6 @@
 
                 <div class="info-row">
                     <span class="info-label b-r">Height</span>
-                    <!-- <select class="info-value" id="height">
-                        <option value="" disabled selected hidden>Unknown</option>
-                    </select> -->
                     <input
                         class="info-value"
                         id="height"
@@ -148,13 +144,123 @@
 
         <section id="primaries">
             <div id="primaries-row">
-                <div class="primaries-block" id="primaries-block-1"></div>
-                <div class="primaries-block" id="primaries-block-2"></div>
-                <div class="primaries-block" id="primaries-block-3"></div>
+                <div class="primaries-block" id="primaries-block-1">Nature Vapor</div>
+                <div class="primaries-block" id="primaries-block-2">Astral Vapor</div>
+                <div class="primaries-block" id="primaries-block-3">Void Vapor</div>
             </div>
 
+            <form id="bar-inputs">
+                <div class="inputs-container" id="vital">
+                    <div class="stat-container p-t">
+                        <label for="vit-cap">Vital Capacity:</label>
+                        <input type="text" name="vit-cap" id="vit-cap" autocomplete="off">
+                    </div>
+    
+                    <div class="stat-container p-t">
+                        <label for="vit-reg">Vital Regeneration:</label>
+                        <input type="text" name="vit-reg" id="vit-reg" autocomplete="off">
+                    </div>
+    
+                    <div class="stat-container p-t">
+                        <label for="vit-ptc">Vital Potency:</label>
+                        <input type="text" name="vit-ptc" id="vit-ptc" autocomplete="off">
+                    </div>
+    
+                    <div class="stat-container p-t">
+                        <label for="vit-bStr">Basin Strength:</label>
+                        <input type="text" name="bStr" id="bStr" autocomplete="off">
+                    </div>
+
+                    <div class="legendary-container p-t p-b">Legendary Status:
+                        <input type="checkbox" id="vit-checkbox">
+                        <label for="vit-checkbox" class="checkmark" id="vit-checkmark"></label>
+                    </div>
+                </div>
+                
+                <div class="inputs-container" id="nature">
+                    <div class="stat-container p-t">
+                        <label for="nat-cap">Nature Capacity:</label>
+                        <input type="text" name="nat-cap" id="nat-cap" autocomplete="off">
+                    </div>
+    
+                    <div class="stat-container p-t">
+                        <label for="nat-reg">Nature Regeneration:</label>
+                        <input type="text" name="nat-reg" id="nat-reg" autocomplete="off">
+                    </div>
+    
+                    <div class="stat-container p-t">
+                        <label for="nat-ptc">Nature Potency:</label>
+                        <input type="text" name="nat-ptc" id="nat-ptc" autocomplete="off">
+                    </div>
+    
+                    <div class="stat-container p-t">
+                        <label for="nat-lnk">Nature Link:</label>
+                        <input type="text" name="nat-lnk" id="nat-lnk" autocomplete="off">
+                    </div>
+
+                    <div class="legendary-container p-t p-b">Legendary Status:
+                        <input type="checkbox" id="nat-checkbox">
+                        <label for="nat-checkbox" class="checkmark" id="nat-checkmark"></label>
+                    </div>
+                </div>
+                
+                <div class="inputs-container" id="astral">
+                    <div class="stat-container p-t">
+                        <label for="ast-cap">Astral Capacity:</label>
+                        <input type="text" name="ast-cap" id="ast-cap" autocomplete="off">
+                    </div>
+    
+                    <div class="stat-container p-t">
+                        <label for="ast-reg">Astral Regeneration:</label>
+                        <input type="text" name="ast-reg" id="ast-reg" autocomplete="off">
+                    </div>
+    
+                    <div class="stat-container p-t">
+                        <label for="ast-ptc">Astral Potency:</label>
+                        <input type="text" name="ast-ptc" id="ast-ptc" autocomplete="off">
+                    </div>
+    
+                    <div class="stat-container p-t p-b">
+                        <label for="ast-link">Astral Link:</label>
+                        <input type="text" name="ast-lnk" id="ast-lnk" autocomplete="off">
+                    </div>
+
+                    <div class="legendary-container p-t p-b">Legendary Status:
+                        <input type="checkbox" id="ast-checkbox">
+                        <label for="ast-checkbox" class="checkmark" id="ast-checkmark"></label>
+                    </div>
+                </div>
+                
+                <div class="inputs-container" id="void">
+                    <div class="stat-container p-t">
+                        <label for="void-cap">Void Capacity:</label>
+                        <input type="text" name="void-cap" id="void-cap" autocomplete="off">
+                    </div>
+    
+                    <div class="stat-container p-t">
+                        <label for="void-reg">Void Regeneration:</label>
+                        <input type="text" name="void-reg" id="void-reg" autocomplete="off">
+                    </div>
+    
+                    <div class="stat-container p-t">
+                        <label for="void-ptc">Void Potency:</label>
+                        <input type="text" name="void-ptc" id="void-ptc" autocomplete="off">
+                    </div>
+    
+                    <div class="stat-container p-t p-b">
+                        <label for="void-lnk">Void Link:</label>
+                        <input type="text" name="void-lnk" id="void-lnk" autocomplete="off">
+                    </div>
+
+                    <div class="legendary-container p-t p-b">Legendary Status:
+                        <input type="checkbox" id="void-checkbox">
+                        <label for="void-checkbox" class="checkmark" id="void-checkmark"></label>
+                    </div>
+                </div>
+            </form>
+
             <div id="bar-holder">
-            <canvas id="bar"></canvas>
+                <canvas id="bar"></canvas>
             </div>
         </section>
 
@@ -187,6 +293,8 @@
                 Description
             </div>
         </section>
+
+        <div id="cursor-label"></div>
     </main>
 
     <!-- <button id="save-btn">Save As PNG</button> -->
@@ -194,8 +302,5 @@
 <script src="./assets/js/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="./assets/js/guildData.js"></script>
-<script src="./assets/js/script.js"></script>
+<script src="./assets/js/index.js"></script>
 <script src="./assets/js/exportElementAsPNG.js"></script>
-
-</body>
-</html>
