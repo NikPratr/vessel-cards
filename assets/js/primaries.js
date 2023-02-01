@@ -76,6 +76,8 @@ const primaries = [
 const displays = [vitDisplay, natDisplay, astDisplay, voidDisplay];
 let currentDisplay = 'vital';
 let currentPrimaries = [vitCap, vitReg, vitPtc, bStr];
+let primeOnes = [vitCap, natCap, astCap, voidCap];
+let primeTwos = [vitReg, natReg, astReg, voidReg];
 
 // Declaratives
 vitDisplay.style.display = 'flex';
@@ -181,6 +183,17 @@ for (let i = 0; i < primaries.length; i++) {
     primaries[i].addEventListener('keyup', validateStats2);
 };
 
+for (let i = 0; i < 4; i++) {
+    primeOnes[i].addEventListener('input', () => {
+        importantValues[5] = primeOnes[i].value;
+        checkLegendaryEligability();
+    });
+    primeTwos[i].addEventListener('input', () => {
+        importantValues[6] = primeTwos[i].value;
+        checkLegendaryEligability();
+    });
+};
+
 // --------------------------------
 // Functions
 // --------------------------------
@@ -196,58 +209,121 @@ function setDisplay(display) {
         currentDisplay = 'nature';
 
         currentPrimaries = [natCap, natReg, natPtc, natLnk];
+        importantValues[5] = currentPrimaries[0].value;
+        importantValues[6] = currentPrimaries[1].value;
     } else if(display === 'astral') {
         currentDisplay = 'astral';
 
         currentPrimaries = [astCap, astReg, astPtc, astLnk];
+        importantValues[5] = currentPrimaries[0].value;
+        importantValues[6] = currentPrimaries[1].value;
     } else {
         currentDisplay = 'void';
 
         currentPrimaries = [voidCap, voidReg, voidPtc, voidLnk];
+        importantValues[5] = currentPrimaries[0].value;
+        importantValues[6] = currentPrimaries[1].value;
     }
+
+    currentPrimaries[0].value === '' ? importantValues[5] = 0 : importantValues[5] = currentPrimaries[0].value;
+    currentPrimaries[1].value === '' ? importantValues[6] = 0 : importantValues[6] = currentPrimaries[1].value;
 };
 
 function preventCheck(event) {
     event.preventDefault();
     event.stopPropagation();
-}
+};
 
 function checkLegendaryEligability() {
-    let importantValues = [];
-
-    currentPrimaries[0].value === '' ? importantValues.push(0) : importantValues.push(currentPrimaries[0].value);
-    currentPrimaries[1].value === '' ? importantValues.push(0) : importantValues.push(currentPrimaries[1].value);
-
-    secondaries[0].value === '' ? importantValues.push(0) : importantValues.push(secondaries[0].value);
-    secondaries[1].value === '' ? importantValues.push(0) : importantValues.push(secondaries[1].value);
-    secondaries[2].value === '' ? importantValues.push(0) : importantValues.push(secondaries[2].value);
-    secondaries[3].value === '' ? importantValues.push(0) : importantValues.push(secondaries[3].value);
-    secondaries[4].value === '' ? importantValues.push(0) : importantValues.push(secondaries[4].value);
-
-    if(Math.min(...importantValues) < 50) {
-        vitLegText.style.color = 'gray';
-        vitLegText.style.textDecoration = 'line-through';
-        vitLegMark.style.pointerEvents = 'none';
-        vitLegBox.addEventListener('click', preventCheck);
-
-        if (vitLegBox.checked === true) {
-            vitLegMark.style.backgroundColor = 'gray';
-            vitLegMark.style.opacity = '0.4';
+    if(currentDisplay === 'vital') {
+        if(Math.min(...importantValues) < 50) {
+            vitLegText.style.color = 'gray';
+            vitLegText.style.textDecoration = 'line-through';
+            vitLegMark.style.pointerEvents = 'none';
+            vitLegBox.addEventListener('click', preventCheck);
+    
+            if (vitLegBox.checked === true) {
+                vitLegMark.style.backgroundColor = 'gray';
+                vitLegMark.style.opacity = '0.4';
+            }
+        } else {
+            vitLegText.style.color = 'black';
+            vitLegText.style.textDecoration = 'none';
+            vitLegMark.style.pointerEvents = 'auto';
+            vitLegBox.removeEventListener('click', preventCheck);
+    
+            if (vitLegBox.checked === true) {
+                vitLegMark.style.backgroundColor = 'rgba(40, 40, 160, 1)';
+                vitLegMark.style.opacity = '1';
+            } else { vitLegMark.style.backgroundColor = 'transparent'; }
         }
-    } else {
-        vitLegText.style.color = 'black';
-        vitLegText.style.textDecoration = 'none';
-        vitLegMark.style.pointerEvents = 'auto';
-        vitLegBox.removeEventListener('click', preventCheck);
-
-        if (vitLegBox.checked === true) {
-            vitLegMark.style.backgroundColor = 'rgba(40, 40, 160, 1)';
-            vitLegMark.style.opacity = '1';
+    } else if(currentDisplay === 'nature') {
+        if(Math.min(...importantValues) < 50) {
+            natLegText.style.color = 'gray';
+            natLegText.style.textDecoration = 'line-through';
+            natLegMark.style.pointerEvents = 'none';
+            natLegBox.addEventListener('click', preventCheck);
+    
+            if (natLegBox.checked === true) {
+                natLegMark.style.backgroundColor = 'gray';
+                natLegMark.style.opacity = '0.4';
+            }
+        } else {
+            natLegText.style.color = 'black';
+            natLegText.style.textDecoration = 'none';
+            natLegMark.style.pointerEvents = 'auto';
+            natLegBox.removeEventListener('click', preventCheck);
+    
+            if (natLegBox.checked === true) {
+                natLegMark.style.backgroundColor = 'rgba(40, 160, 40, 1)';
+                natLegMark.style.opacity = '1';
+            } else { natLegMark.style.backgroundColor = 'transparent'; }
+        }
+    } else if(currentDisplay === 'astral') {
+        if(Math.min(...importantValues) < 50) {
+            astLegText.style.color = 'gray';
+            astLegText.style.textDecoration = 'line-through';
+            astLegMark.style.pointerEvents = 'none';
+            astLegBox.addEventListener('click', preventCheck);
+    
+            if (astLegBox.checked === true) {
+                astLegMark.style.backgroundColor = 'gray';
+                astLegMark.style.opacity = '0.4';
+            }
+        } else {
+            astLegText.style.color = 'black';
+            astLegText.style.textDecoration = 'none';
+            astLegMark.style.pointerEvents = 'auto';
+            astLegBox.removeEventListener('click', preventCheck);
+    
+            if (astLegBox.checked === true) {
+                astLegMark.style.backgroundColor = 'rgba(150, 150, 150, 1)';
+                astLegMark.style.opacity = '1';
+            } else { astLegMark.style.backgroundColor = 'transparent'; }
+        }
+    } else if(currentDisplay === 'void') {
+        if(Math.min(...importantValues) < 50) {
+            voidLegText.style.color = 'gray';
+            voidLegText.style.textDecoration = 'line-through';
+            voidLegMark.style.pointerEvents = 'none';
+            voidLegBox.addEventListener('click', preventCheck);
+    
+            if (voidLegBox.checked === true) {
+                voidLegMark.style.backgroundColor = 'gray';
+                voidLegMark.style.opacity = '0.4';
+            }
+        } else {
+            voidLegText.style.color = 'black';
+            voidLegText.style.textDecoration = 'none';
+            voidLegMark.style.pointerEvents = 'auto';
+            voidLegBox.removeEventListener('click', preventCheck);
+    
+            if (voidLegBox.checked === true) {
+                voidLegMark.style.backgroundColor = 'rgba(25, 25, 25, 1)';
+                voidLegMark.style.opacity = '1';
+            }  else { voidLegMark.style.backgroundColor = 'transparent'; }
         }
     }
-
-    console.log(importantValues);
-    console.log(Math.min(...importantValues));
 };
 
 function updateBarMax() {

@@ -20,7 +20,7 @@ const safe = [
 const zero = /[0-9]|Backspace/;
 const one = /[1-9]|Backspace/;
 
-// let importantValues = [0, 0, 0, 0, 0, 0, 0];
+let importantValues = [0, 0, 0, 0, 0, 0, 0];
 
 // --------------------------------
 // Event Listeners

@@ -37,7 +37,8 @@ for (let i = 0; i < secondaries.length; i++) {
 function updateSecondaries(n, stat) {
     let currentAvg = +str.value + +spd.value + +agi.value + +per.value + +clr.value;
     avg.textContent = (currentAvg / 5).toFixed(1);
-    // importantValues[n] = stat.value;
+    importantValues[n] = stat.value;
+    checkLegendaryEligability();
 
     radarGraph.data.datasets[0].data[n] = stat.value;
     radarGraph.update();
