@@ -64,6 +64,7 @@ select {
 }
 
 option {
+    color: black;
     background-color: #FCF5E5;
 }
 
@@ -359,6 +360,14 @@ Card
 .container-item:focus {
     color: white;
     background-color: rgb(30, 144, 255);
+}
+
+#race {
+    color: gray;
+}
+
+#alliance {
+    color: gray;
 }
 
 #character-image {

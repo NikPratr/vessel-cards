@@ -171,7 +171,7 @@
                         <input type="text" name="bStr" id="bStr" autocomplete="off">
                     </div>
 
-                    <div class="legendary-container p-t p-b">Legendary Status:
+                    <div class="legendary-container p-t p-b" id="vit-leg-container">Legendary Status:
                         <input type="checkbox" id="vit-checkbox">
                         <label for="vit-checkbox" class="checkmark" id="vit-checkmark"></label>
                     </div>
@@ -198,7 +198,7 @@
                         <input type="text" name="nat-lnk" id="nat-lnk" autocomplete="off">
                     </div>
 
-                    <div class="legendary-container p-t p-b">Legendary Status:
+                    <div class="legendary-container p-t p-b" id="nat-leg-container">Legendary Status:
                         <input type="checkbox" id="nat-checkbox">
                         <label for="nat-checkbox" class="checkmark" id="nat-checkmark"></label>
                     </div>
@@ -225,7 +225,7 @@
                         <input type="text" name="ast-lnk" id="ast-lnk" autocomplete="off">
                     </div>
 
-                    <div class="legendary-container p-t p-b">Legendary Status:
+                    <div class="legendary-container p-t p-b" id="ast-leg-container">Legendary Status:
                         <input type="checkbox" id="ast-checkbox">
                         <label for="ast-checkbox" class="checkmark" id="ast-checkmark"></label>
                     </div>
@@ -252,7 +252,7 @@
                         <input type="text" name="void-lnk" id="void-lnk" autocomplete="off">
                     </div>
 
-                    <div class="legendary-container p-t p-b">Legendary Status:
+                    <div class="legendary-container p-t p-b" id="void-leg-container">Legendary Status:
                         <input type="checkbox" id="void-checkbox">
                         <label for="void-checkbox" class="checkmark" id="void-checkmark"></label>
                     </div>
@@ -268,17 +268,32 @@
             <div class="b-r" id="temp-stats">
                 <div class="info-row" id="style">
                     <span class="info-label">Style</span>
-                    <span class="info-value" id="age">Short-ranged</span>
+                    <select class="info-value" id="style-input">
+                        <option value="" disabled selected hidden>Unknown</option>
+                        <option value="short-ranged">Short-Ranged</option>
+                        <option value="balanced">Balanced</option>
+                        <option value="long-ranged">Long-Ranged</option>
+                    </select>
                 </div>
 
                 <div class="info-row" id="strategy">
                     <span class="info-label">Strategy</span>
-                    <span class="info-value" id="age">Balanced</span>
+                    <select class="info-value" id="strategy-input">
+                        <option value="" disabled selected hidden>Unknown</option>
+                        <option value="rapid">Rapid</option>
+                        <option value="balanced">Balanced</option>
+                        <option value="progressive">Progressive</option>
+                    </select>
                 </div>
 
                 <div class="info-row" id="tactics">
                     <span class="info-label">Tactics</span>
-                    <span class="info-value" id="age">Pressuring</span>
+                    <select class="info-value" id="tactics-input">
+                        <option value="" disabled selected hidden>Unknown</option>
+                        <option value="pressuring">Pressuring</option>
+                        <option value="balanced">Balanced</option>
+                        <option value="punishing">Punishing</option>
+                    </select>
                 </div>
 
                 <div class="info-row group-end" id="rating">
@@ -299,8 +314,13 @@
 
     <!-- <button id="save-btn">Save As PNG</button> -->
     
-<script src="./assets/js/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="./assets/js/guildData.js"></script>
+
 <script src="./assets/js/index.js"></script>
+<script src="./assets/js/guildData.js"></script>
+<script src="./assets/js/demographics.js"></script>
+<script src="./assets/js/primaries.js"></script>
+<script src="./assets/js/secondaries.js"></script>
+
+<script src="./assets/js/html2canvas.min.js"></script>
 <script src="./assets/js/exportElementAsPNG.js"></script>
