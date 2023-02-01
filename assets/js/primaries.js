@@ -228,13 +228,22 @@ function checkLegendaryEligability() {
         vitLegText.style.color = 'gray';
         vitLegText.style.textDecoration = 'line-through';
         vitLegMark.style.pointerEvents = 'none';
-        vitLegBox.checked = false;
-        vitLegBox.addEventListener('click', preventCheck)
+        vitLegBox.addEventListener('click', preventCheck);
+
+        if (vitLegBox.checked === true) {
+            vitLegMark.style.backgroundColor = 'gray';
+            vitLegMark.style.opacity = '0.4';
+        }
     } else {
         vitLegText.style.color = 'black';
         vitLegText.style.textDecoration = 'none';
         vitLegMark.style.pointerEvents = 'auto';
-        vitLegBox.removeEventListener('click', preventCheck)
+        vitLegBox.removeEventListener('click', preventCheck);
+
+        if (vitLegBox.checked === true) {
+            vitLegMark.style.backgroundColor = 'rgba(40, 40, 160, 1)';
+            vitLegMark.style.opacity = '1';
+        }
     }
 
     console.log(importantValues);
