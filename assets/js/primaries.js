@@ -72,7 +72,6 @@ const primaries = [
     voidPtc,
     voidLnk
 ];
-let importantValues = [0, 0, 0, 0, 0, 0, 0];
 
 const displays = [vitDisplay, natDisplay, astDisplay, voidDisplay];
 let currentDisplay = 'vital';
@@ -214,14 +213,16 @@ function preventCheck(event) {
 }
 
 function checkLegendaryEligability() {
-    currentPrimaries[0].value === '' ? importantValues.push(0) : importantValues.push(currentPrimaries[0]);
-    currentPrimaries[1].value === '' ? importantValues.push(0) : importantValues.push(currentPrimaries[1]);
+    let importantValues = [];
 
-    secondaries[0].value === '' ? importantValues.push(0) : importantValues.push(secondaries[0]);
-    secondaries[1].value === '' ? importantValues.push(0) : importantValues.push(secondaries[1]);
-    secondaries[2].value === '' ? importantValues.push(0) : importantValues.push(secondaries[2]);
-    secondaries[3].value === '' ? importantValues.push(0) : importantValues.push(secondaries[3]);
-    secondaries[4].value === '' ? importantValues.push(0) : importantValues.push(secondaries[4]);
+    currentPrimaries[0].value === '' ? importantValues.push(0) : importantValues.push(currentPrimaries[0].value);
+    currentPrimaries[1].value === '' ? importantValues.push(0) : importantValues.push(currentPrimaries[1].value);
+
+    secondaries[0].value === '' ? importantValues.push(0) : importantValues.push(secondaries[0].value);
+    secondaries[1].value === '' ? importantValues.push(0) : importantValues.push(secondaries[1].value);
+    secondaries[2].value === '' ? importantValues.push(0) : importantValues.push(secondaries[2].value);
+    secondaries[3].value === '' ? importantValues.push(0) : importantValues.push(secondaries[3].value);
+    secondaries[4].value === '' ? importantValues.push(0) : importantValues.push(secondaries[4].value);
 
     if(Math.min(...importantValues) < 50) {
         vitLegText.style.color = 'gray';
@@ -235,7 +236,8 @@ function checkLegendaryEligability() {
         vitLegBox.removeEventListener('click', preventCheck)
     }
 
-    // console.log(Math.min(importantValues));
+    console.log(importantValues);
+    console.log(Math.min(...importantValues));
 };
 
 function updateBarMax() {
