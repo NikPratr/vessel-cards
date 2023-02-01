@@ -228,6 +228,7 @@ function checkLegendaryEligability() {
         vitLegText.style.color = 'gray';
         vitLegText.style.textDecoration = 'line-through';
         vitLegMark.style.pointerEvents = 'none';
+        vitLegBox.checked = false;
         vitLegBox.addEventListener('click', preventCheck)
     } else {
         vitLegText.style.color = 'black';
