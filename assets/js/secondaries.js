@@ -10,6 +10,7 @@ const clr = document.getElementById('clr');
 const avg = document.getElementById('avg');
 const secondariesRow = document.getElementById('secondaries-block-1');
 const radar = document.getElementById('radar');
+const radarMaxEl = document.getElementById('radar-max');
 
 const secondaries = [str, spd, agi, per, clr];
 
@@ -45,6 +46,7 @@ function updateSecondaries(n, stat) {
     
     if(Math.max( str.value, spd.value, agi.value, per.value, clr.value) > 33) {
         radarMax = 99;
+        radarMaxEl.textContent = 'Max: 99';
         radarGraph.options.scales.r.max = radarMax;
 
         radarStep = 33;
@@ -53,6 +55,7 @@ function updateSecondaries(n, stat) {
         radarGraph.update();
     } else {
         radarMax = 33;
+        radarMaxEl.textContent = 'Max: 33';
         radarGraph.options.scales.r.max = radarMax;
 
         radarStep = 11;
@@ -61,52 +64,3 @@ function updateSecondaries(n, stat) {
         radarGraph.update();
     }
 };
-
-// --------------------------------
-// Radar Chart
-// --------------------------------
-
-const radarGraph = new Chart(radar, {
-    type: 'radar',
-    data: {
-        labels: ['STR', 'SPD', 'AGI', 'PER', 'CLR'],
-        datasets: [{
-            label: 'Secondaries',
-            data: [0, 0, 0, 0, 0],
-            borderColor: '#D21404',
-            backgroundColor: 'rgba(154, 42, 42, 0.4)'
-        }]
-    },
-    options: {
-        plugins: {
-            legend: {
-                display: false,
-            }
-        },
-        scales: {
-            r: {
-                min: radarMin,
-                max: radarMax,
-                grid: {
-                    color: 'black',
-                },
-                ticks: {
-                    stepSize: radarStep,
-                    callback: function(x) {
-                        if (x !== radarMax) {
-                            return "";
-                        } else {
-                            return x;
-                        }
-                    }
-                },
-                pointLabels: {
-                    color: 'black',
-                    font: {
-                        size: '14px'
-                    }
-                }
-            }
-        }
-    }
-});

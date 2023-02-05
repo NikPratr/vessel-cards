@@ -1,220 +1,44 @@
 /*
-#2C3333 
-#395B64
-#A5C9CA
-#E7F6F2
-*/
-
-/*
 ------------------------------
-General
-------------------------------
-*/
-
-body {
-    display: flex;
-    justify-content: center;
-    background-color: lightgray;
-    font-family: 'arial';
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-    margin: 0;
-    padding-top: 8px;
-}
-
-h1 {
-    margin: 0;
-    font-size: 18px;
-    text-indent: 3px;
-    font-weight: bolder;
-}
-
-h2 {
-    margin: 0;
-    text-indent: 3px;
-    font-size: 16px;
-    font-weight: bold;
-    font-style: italic;
-}
-
-h3 {
-    display: inline;
-    margin: 0;
-    text-indent: 3px;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-span {
-    padding: 1px 2px;
-    cursor: default;
-}
-
-select {
-    padding: 1px 2px;
-    background-color: transparent;
-    appearance: none;
-
-    border: none;
-    outline: none;
-
-    size: 10;
-}
-
-option {
-    color: black;
-    background-color: #FCF5E5;
-}
-
-.legendary-container {
-    display: block;
-    position: relative;
-}
-
-input[type="checkbox"] {
-    display: none;
-}
-
-.checkmark {
-    position: absolute;
-    top: 2px;
-    right: 0;
-    height: 15px;
-    width: 15px;
-    background-color: #FCF5E5;
-    border: 1px solid;
-    border-radius: 3px;
-}
-
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-input[type="checkbox"]:checked ~ .checkmark:after {
-    display: block;
-}
-
-.checkmark:after {
-    left: 4px;
-    top: 1px;
-    width: 5px;
-    height: 8px;
-    border: solid #FCF5E5;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(35deg);
-    -ms-transform: rotate(35deg);
-    transform: rotate(35deg);
-}
-
-#vit-checkmark:hover {
-    background-color: rgba(40, 40, 160, 0.4);
-    cursor: pointer;
-}
-
-input[type="checkbox"]:checked ~ #vit-checkmark {
-    background-color: rgba(40, 40, 160, 1);
-}
-
-#nat-checkmark:hover {
-    background-color: rgba(40, 160, 40, 0.4);
-    cursor: pointer;
-}
-
-input[type="checkbox"]:checked ~ #nat-checkmark {
-    background-color: rgba(40, 160, 40, 1);
-}
-
-#ast-checkmark:hover {
-    background-color: rgba(150, 150, 150, 0.4);
-    cursor: pointer;
-}
-
-input[type="checkbox"]:checked ~ #ast-checkmark {
-    background-color: rgba(150, 150, 150, 1);
-}
-
-#void-checkmark:hover {
-    background-color: rgba(25, 25, 25, 0.4);
-    cursor: pointer;
-}
-
-input[type="checkbox"]:checked ~ #void-checkmark {
-    background-color: rgba(25, 25, 25, 1);
-}
-
-*::placeholder {
-    color: gray !important;
-    opacity: 1 !important;
-}
-
-/*
-------------------------------
-UI
-------------------------------
-*/
-
-#ui {
-    display: none;
-    /* display: flex; */
-    flex-direction: column;
-    align-items: center;
-
-    padding: 10px;
-    height: 350px;
-    width: 375px;
-    background-color: #FCF5E5;
-
-    border-radius: 5px;
-}
-
-#ui h1 {
-    margin-bottom: 20px;
-}
-
-#ui button {
-    margin-bottom: 5%;
-
-    width: 25%;
-
-    border: none;
-    background-color: burlywood;
-    border: 2px solid #A0522D;
-    border-radius: 3px;
-
-    box-shadow: 4px 2px 3px 1px gray;
-
-    cursor: pointer;
-}
-
-#ui button:active {
-    box-shadow: inset 2px 1px 1px 1px gray;
-}
-
-#ui input {
-    display: inline;
-}
-
-/*
-------------------------------
-Card
+|| General
 ------------------------------
 */
 
 #card {
+    display: none;
+    position: relative;
     padding: 25px 33px 35px 27px;
 
     max-height: 630px;
     min-height: 630px;
     min-width: 450px;
     max-width: 450px;
-    background-color: #FCF5E5;
+    background-color: var(--parchment);
 
     border-radius: 25px;
+    border: 2px solid;
+}
 
+.card-tear {
+    position: absolute;
+    top: 75px;
+    left: -5px;
+    width: 10px;
+    height: 10px;
+    background-color: lightgray;
+    rotate: 350deg;
+    transform: skew(40deg);
+    border-width: 0 2px 2px 0;
+    border-style: solid;
+}
+
+.card-tear-streak {
+    position: absolute;
+    top: 85px;
+    left: 13px;
+    width: 5px;
+    border-top: 1px solid;
+    rotate: 10deg;
 }
 
 .heading1 {
@@ -266,12 +90,16 @@ Card
     outline: none;
 }
 
-/* Character */
+/*
+------------------------------
+|| Character
+------------------------------
+*/
 
 #character {
     display: flex;
 
-    height: 25%;
+    height: 28.125%;
     width: 100%;
     border: 3px solid;
 }
@@ -323,7 +151,7 @@ Card
     display: flex;
     flex-direction: column;
 
-    background-color: #FCF5E5;
+    background-color: var(--parchment);
     
     border-radius: 5px;
     border: 1px solid lightgray;
@@ -366,6 +194,10 @@ Card
     color: gray;
 }
 
+#sex {
+    color: gray;
+}
+
 #alliance {
     color: gray;
 }
@@ -375,12 +207,16 @@ Card
     height: 100%;
 }
 
-/* Secondaries */
+/*
+------------------------------
+|| Secondaries
+------------------------------
+*/
 
 #secondaries {
     display: flex;
 
-    height: 25%;
+    height: 21.875%;
     width: 100%;
     border-width: 0 3px 3px 3px;
     border-style: solid;
@@ -398,11 +234,10 @@ Card
     display: flex;
 
     width: 100%;
-    height: 12.5%;
+    height: 14.3%;
 }
 
 .sec-label {
-
     font-size: 14px;
 }
 
@@ -411,10 +246,10 @@ Card
 }
 
 .dark {
-    background-color: burlywood;
+    background-color: var(--lowlight);
 }
 
-#secondaries-block-1 {
+/* #secondaries-block-1 {
     background-image: linear-gradient(45deg,
             #00000000 25%,
             #000000 25%,
@@ -454,15 +289,31 @@ Card
     background-size: 3.5px 3.5px;
     width: 100%;
     height: 100%;
+} */
+
+#radar-holder {
+    position: relative;
+    height: 100%;
+    width: calc(50% - 1px);
 }
 
 #radar {
     margin: auto;
-    height: 100%;
-    width: 100%;
 }
 
-/* Primaries */
+#radar-max {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+
+    font-size: 14px;
+}
+
+/*
+------------------------------
+|| Primaries
+------------------------------
+*/
 
 #primaries {
     display: flex;
@@ -551,7 +402,89 @@ Card
     margin: auto;
 }
 
-/* Fighting Style */
+
+
+.legendary-container {
+    display: block;
+    position: relative;
+}
+
+/* Legendary Checkmarks */
+
+.checkmark {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    height: 15px;
+    width: 15px;
+    background-color: var(--parchment);
+    border: 1px solid;
+    border-radius: 3px;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+input[type="checkbox"]:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkmark:after {
+    left: 4px;
+    top: 1px;
+    width: 5px;
+    height: 8px;
+    border: solid var(--parchment);
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(35deg);
+    -ms-transform: rotate(35deg);
+    transform: rotate(35deg);
+}
+
+#vit-checkmark:hover {
+    background-color: rgba(40, 40, 160, 0.4);
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked ~ #vit-checkmark {
+    background-color: rgba(40, 40, 160, 1);
+}
+
+#nat-checkmark:hover {
+    background-color: rgba(40, 160, 40, 0.4);
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked ~ #nat-checkmark {
+    background-color: rgba(40, 160, 40, 1);
+}
+
+#ast-checkmark:hover {
+    background-color: rgba(150, 150, 150, 0.4);
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked ~ #ast-checkmark {
+    background-color: rgba(150, 150, 150, 1);
+}
+
+#void-checkmark:hover {
+    background-color: rgba(25, 25, 25, 0.4);
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked ~ #void-checkmark {
+    background-color: rgba(25, 25, 25, 1);
+}
+
+/*
+------------------------------
+|| Fighting Style
+------------------------------
+*/
 
 #temperament {
     display: flex;

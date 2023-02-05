@@ -4,7 +4,7 @@
 
 const primariesRow = document.getElementById('primaries-row');
 const barHolder = document.getElementById('bar-holder');
-const Bar = document.getElementById('bar');
+const bar = document.getElementById('bar');
 const primariesInputs = document.getElementById('bar-inputs');
 
 const vitCap = document.getElementById('vit-cap');
@@ -345,49 +345,3 @@ function updateBarMax() {
 
     barGraph.update();
 };
-
-// --------------------------------
-// Bar Chart
-// --------------------------------
-
-const barGraph = new Chart(Bar, {
-    type: 'bar',
-    data: {
-        labels: ['CAP', 'REG', 'PTC', 'bSTR'],
-        datasets: [{
-            label: 'Vital Vapor',
-            data: [0, 0, 0, 0],
-            borderColor: 'rgba(40, 40, 160, 1)',
-            backgroundColor: 'rgba(40, 40, 160, 0.4)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        plugins: {
-            legend: {
-                labels: {
-                    boxWidth: 0
-                }
-            },
-            tooltip: {
-                enabled: false
-            }
-        },
-        scales: {
-            y: {
-                min: barMin,
-                max: barMax,
-                ticks: {
-                    stepSize: barStep,
-                    callback: function(x) {
-                        if (x > 0 && x < barMax) {
-                            return "";
-                        } else {
-                            return x;
-                        }
-                    }
-                },
-            }
-        }
-    },
-});

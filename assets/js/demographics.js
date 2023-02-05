@@ -4,8 +4,9 @@
 
 const age = document.getElementById('age');
 const birthDate = document.getElementById('birth-date');
-const race = document.getElementById('race');
 const height = document.getElementById('height');
+const race = document.getElementById('race');
+const sex = document.getElementById('sex');
 const guild = document.getElementById('guild');
 const alliance = document.getElementById('alliance');
 
@@ -35,6 +36,7 @@ age.addEventListener('input', updateAge);
 height.addEventListener('keydown', handleHeight);
 
 race.addEventListener('change', () => updateColor(race, 'black'));
+sex.addEventListener('change', () => updateColor(sex, 'black'));
 
 guild.addEventListener('input', generateGuilds);
 guild.addEventListener('focus', generateGuilds);

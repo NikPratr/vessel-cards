@@ -1,0 +1,56 @@
+/*
+------------------------------
+|| Main Display
+------------------------------
+*/
+
+#ui {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 10px;
+    height: 350px;
+    width: 375px;
+    background-color: var(--parchment);
+
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+#ui h1 {
+    margin: 20px 0 40px 0;
+}
+
+#ui button {
+    margin-bottom: 5%;
+
+    width: 25%;
+
+    border: none;
+    background-color: var(--lowlight);
+    border: 2px solid #A0522D;
+    border-radius: 3px;
+
+    box-shadow: 4px 2px 3px 1px gray;
+
+    cursor: pointer;
+}
+
+#ui button:hover {
+    box-shadow: none;
+}
+
+#ui button:active {
+    box-shadow: inset 2px 1px 1px 1px gray;
+}
+
+#ui input {
+    display: inline;
+}
+
+/*
+------------------------------
+|| Side Display
+------------------------------
+*/

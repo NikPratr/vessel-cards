@@ -4,20 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/card.css">
+    <link rel="stylesheet" href="./assets/css/ui.css">
     <title>Vessel Cards</title>
 </head>
     <div id="clickaway"></div>
 
     <div id="ui">
         <h1>Vessel Cards</h1>
-        <button>Create</button>
-        <button>Generate</button>
-        <button>View</button>
-        <button>Compare</button>
+        <button id="create-btn">Create</button>
+        <button id="generate-btn">Generate</button>
+        <button id="view-btn">View</button>
+        <button id="compare-btn">Compare</button>
     </div>
 
     <main id="card">
+        <!-- <div class="card-tear"></div>
+        <div class="card-tear-streak"></div> -->
         <section id="character" class="hide-overflow">
             <div class="b-r" id="character-info">
                 <input
@@ -54,10 +58,10 @@
                     </input>
                 </div>
 
-                <div class="info-row group-end">
+                <div class="info-row">
                     <span class="info-label b-r">Race</span>
                     <select class="info-value" id="race">
-                        <option value="" disabled selected hidden>Unknown</option>
+                        <option value="Unknown" hidden disabled selected>Unknown</option>
                         <option value="Akhanian">Akhanian</option>
                         <option value="Drega">Drega</option>
                         <option value="Ellinian">Ellinian</option>
@@ -67,6 +71,15 @@
                         <option value="Venoa">Venoa</option>
                         <option value="Wehrin">Wehrin</option>
                         <option value="Wezlan">Wezlan</option>
+                    </select>
+                </div>
+
+                <div class="info-row group-end">
+                    <span class="info-label b-r">Sex</span>
+                    <select class="info-value" id="sex">
+                        <option value="unknown" hidden disabled selected>Unknown</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
                     </select>
                 </div>
 
@@ -132,14 +145,17 @@
                     <span class="info-value" id="avg"></span>
                 </div>
 
-                <div class="secondaries-row">
+                <!-- <div class="secondaries-row">
                     <div id="secondaries-block-1"></div>
                     <div id="secondaries-block-2"></div>
                     <div id="secondaries-block-3"></div>
-                </div>
+                </div> -->
             </div>
             
-            <canvas id="radar"></canvas>
+            <div id="radar-holder">
+                <div id="radar-max">Max: 33</div>
+                <canvas id="radar"></canvas>
+            </div>
         </section>
 
         <section id="primaries">
@@ -298,7 +314,7 @@
 
                 <div class="info-row group-end" id="rating">
                     <span class="info-label">Rating</span>
-                    <span class="info-value" id="age">X</span>
+                    <span class="info-value" id="age">Unknown</span>
                 </div>
 
                 <footer id="signature">MTS</footer>
@@ -315,12 +331,15 @@
     <!-- <button id="save-btn">Save As PNG</button> -->
     
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/simple-statistics@7.8.0/dist/simple-statistics.min.js"></script>
 
 <script src="./assets/js/index.js"></script>
+<script src="./assets/js/cardDetails.js"></script>
 <script src="./assets/js/guildData.js"></script>
 <script src="./assets/js/demographics.js"></script>
 <script src="./assets/js/primaries.js"></script>
 <script src="./assets/js/secondaries.js"></script>
+<script src="./assets/js/ratingCaclulator.js"></script>
 
 <script src="./assets/js/html2canvas.min.js"></script>
 <script src="./assets/js/exportElementAsPNG.js"></script>

@@ -1,0 +1,89 @@
+/*
+#2C3333 
+#395B64
+#A5C9CA
+#E7F6F2
+*/
+
+/*
+------------------------------
+|| Variables
+------------------------------
+*/
+
+:root {
+    --parchment: #FCF5E5;
+    --lowlight: burlywood;
+}
+
+/*
+------------------------------
+|| General
+------------------------------
+*/
+
+body {
+    display: flex;
+    justify-content: center;
+    background-color: lightgray;
+    font-family: 'arial';
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding-top: 8px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 18px;
+    text-indent: 3px;
+    font-weight: bolder;
+}
+
+h2 {
+    margin: 0;
+    text-indent: 3px;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+h3 {
+    display: inline;
+    margin: 0;
+    text-indent: 3px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+span {
+    padding: 1px 2px;
+    cursor: default;
+}
+
+select {
+    padding: 1px 2px;
+    background-color: transparent;
+    appearance: none;
+
+    border: none;
+    outline: none;
+
+    size: 10;
+}
+
+option {
+    color: black;
+    background-color: #FCF5E5;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+*::placeholder {
+    color: gray !important;
+    opacity: 1 !important;
+}
