@@ -2,6 +2,8 @@
 // Variables
 // --------------------------------
 
+// TODO: Change primary chart maximum when switching between charts
+
 const primariesRow = document.getElementById('primaries-row');
 const barHolder = document.getElementById('bar-holder');
 const bar = document.getElementById('bar');

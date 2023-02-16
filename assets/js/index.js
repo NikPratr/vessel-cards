@@ -1,12 +1,15 @@
 // --------------------------------
-// Variables
+// || Variables
 // --------------------------------
+
+const bodyEl = document.body;
 
 const MainUI = document.getElementById('ui');
 const createBtn = document.getElementById('create-btn');
 const generateBtn = document.getElementById('generate-btn');
 const viewBtn = document.getElementById('view-btn');
 const compareBtn = document.getElementById('compare-btn');
+let currentPage;
 
 const cardUI = document.getElementById('card');
 const inputs = document.getElementsByTagName('input');
@@ -30,14 +33,33 @@ const one = /[1-9]|Backspace/;
 let importantValues = [0, 0, 0, 0, 0, 0, 0];
 
 // --------------------------------
-// Event Listeners
+// || Event Listeners
 // --------------------------------
 
+MainUI.addEventListener('click', event => {
+    if (event.target.nodeName === 'BUTTON' && event.target.id !== 'submit-btn') {
+        currentPage !== undefined ? currentPage.style.display = 'block' : '';
+        currentPage = event.target;
+        event.target.style.display = 'none';
+    }
+})
+
 createBtn.addEventListener('click', () => {
-    MainUI.style.display = 'none';
+    moveMainUI('side');
     cardUI.style.display = 'block';
-    barGraph.update();
-    radarGraph.update();
+
+    const submit = document.createElement('button');
+    const line = document.createElement('div');
+
+    submit.setAttribute('id', 'submit-btn');
+    submit.textContent = 'Preview Card';
+    // submit.addEventListener('click', validateCard);
+    
+    line.setAttribute('id', 'divider');
+
+    MainUI.append(line);
+    MainUI.append(submit);
+
 })
 
 document.addEventListener('keyup', (event) => {
@@ -53,8 +75,29 @@ document.addEventListener('keyup', (event) => {
 });
 
 // --------------------------------
-// Functions
+// || Functions
 // --------------------------------
+
+function moveMainUI(area) {
+    if(area === 'side') {
+        bodyEl.style.justifyContent = 'normal';
+
+        MainUI.style.marginLeft = '10px';
+        MainUI.style.width = 'fit-content';
+        MainUI.style.height = 'fit-content';
+
+        cardUI.style.margin = '0 auto';
+
+        let widthArr = [];
+        for (let i = 1; i < MainUI.children.length; i++) {
+            widthArr.push(MainUI.children[i].clientWidth);
+        }
+
+        for (let i = 1; i < MainUI.children.length; i++) {
+            MainUI.children[i].style.width = Math.max(...widthArr) + 'px';
+        }
+    }
+}
 
 function nextFocus() {
     for (let i=0; i<inputs.length; i++) {
@@ -96,7 +139,7 @@ function updateColor(div, color) {
 };
 
 // --------------------------------
-// Functions
+// || Functions
 // --------------------------------
 
 let barGraph;
@@ -104,7 +147,7 @@ let radarGraph;
 
 const checkCard = setInterval(() => {
     if (cardUI.offsetHeight > 0 && cardUI.offsetWidth > 0) {
-        clearInterval()
+        clearInterval(checkCard)
         
         barGraph = new Chart(bar, {
             type: 'bar',

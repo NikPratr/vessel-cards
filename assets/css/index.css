@@ -5,6 +5,8 @@
 #E7F6F2
 */
 
+/* Search for '||' to quickly cycle between sections */
+
 /*
 ------------------------------
 || Variables
@@ -27,12 +29,9 @@ body {
     justify-content: center;
     background-color: lightgray;
     font-family: 'arial';
-    width: 100vw;
-    height: 100vh;
     position: relative;
-    overflow: hidden;
     margin: 0;
-    padding-top: 8px;
+    padding: 2vw;
 }
 
 h1 {
